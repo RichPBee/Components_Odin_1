@@ -17,6 +17,7 @@ export class Carousel
                 btn.innerText = '<'
                 btn.addEventListener('click', () => { 
                     this.imgIndex--;
+                    this.imgIndex = (this.imgIndex < 0 ) ? (this.imageArray.length -1 ) : this.imgIndex;
                     this.displayImages(this.carousel, this.getDisplayImages(this.imageArray));
                     clearInterval(this.timeInterval);
                 })
@@ -25,6 +26,7 @@ export class Carousel
                 btn.innerText = '>'
                 btn.addEventListener('click', () => { 
                     this.imgIndex++;
+                    this.imgIndex = (this.imgIndex >= this.imageArray.length) ? 0 : this.imgIndex;
                     this.displayImages(this.carousel, this.getDisplayImages(this.imageArray))
                     clearInterval(this.timeInterval);
                 })
@@ -56,6 +58,7 @@ export class Carousel
 
     rotateImages = () => { 
         this.imgIndex++;
+        this.imgIndex = (this.imgIndex >= this.imageArray.length) ? 0 : this.imgIndex;
         const displayImages = this.getDisplayImages(this.imageArray);
         this.displayImages(this.carousel, displayImages);
     }
@@ -74,18 +77,15 @@ export class Carousel
 
     getDisplayImages = (imageArray) => {
         let displayImages = [];
-        if (this.imgIndex === 0 )
+        if (this.imgIndex === (imageArray.length - 1))
         {
-            displayImages.push(imageArray[imageArray.length - 1]);
-            displayImages.push(imageArray[this.imgIndex]);
-            displayImages.push(imageArray[this.imgIndex + 1]);
-        }
-        else if (this.imgIndex === (imageArray.length - 1))
-        {
-            displayImages.push(imageArray[ this.imgIndex - 1 ]);
-            displayImages.push(imageArray[ this.imgIndex ]);
+            displayImages = imageArray.slice(this.imgIndex -1);
             displayImages.push(imageArray[ 0 ]);
-            this.imgIndex = 0;
+        }
+        else if (this.imgIndex === 0 )
+        {
+            displayImages = imageArray.slice(this.imgIndex, this.imgIndex + 2);
+            displayImages.unshift(imageArray[imageArray.length - 1]);
         }
         else 
         {
