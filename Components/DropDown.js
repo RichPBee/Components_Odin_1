@@ -1,3 +1,10 @@
+const createDropDown = (Id) => { 
+    const dropDown = document.createElement('div');
+    dropDown.setAttribute('id', Id);
+    dropDown.setAttribute('class', 'drop-down');
+    return dropDown;
+}
+
 const createButton = (buttonName, listId) => { 
     let btn = document.createElement('button');
     btn.setAttribute('class', 'drop-down-button');
@@ -41,15 +48,13 @@ const toggleHidden = (listId) => {
     }
 }
 
-const createDropDown = (
+const buildDropDown = (
     Id,
     buttonName,
     listItems,
     listId
     ) => { 
-    const dropDown = document.createElement('div');
-    dropDown.setAttribute('id', Id);
-    dropDown.setAttribute('class', 'drop-down');
+    const dropDown = createDropDown(Id);
 
     const button = createButton(buttonName, listId);
 
@@ -60,4 +65,4 @@ const createDropDown = (
     return dropDown;
 }
 
-export { createDropDown }
+export { buildDropDown }

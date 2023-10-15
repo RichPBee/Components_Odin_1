@@ -1,0 +1,15 @@
+.carousel {
+    display: flex;
+    width: 100%;
+    justify-content: space-around;
+}
+
+.carousel-nav {
+    width: 100%;
+    display: flex; 
+    justify-content: space-evenly;
+}   
+
+.carousel-image-container {
+    width: 30%;
+}
